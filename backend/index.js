@@ -27,7 +27,7 @@ app.use(
 
 // ✅ Root route
 app.get("/", (req, res) => {
-  res.json({ data: "hello from Render backend 🚀" });
+  res.send({ data: "hello from Render backend 🚀" });
 });
 
 // ========================
