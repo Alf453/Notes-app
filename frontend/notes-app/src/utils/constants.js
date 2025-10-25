@@ -1,1 +1,1 @@
-export const BASE_URL = "https://notes-app-0l8x.onrender.com";
+export const BASE_URL = "https://notes-app-beige-tau.vercel.app";
