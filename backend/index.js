@@ -8,8 +8,6 @@ const User = require("./models/user.model");
 const Note = require("./note.model");
 const { authenticateToken } = require("./utilities");
 
-import cors from "cors";
-app.use(cors({ origin: "*" }));
 
 
 // ✅ Use environment variable for MongoDB (Render will provide MONGO_URI)
