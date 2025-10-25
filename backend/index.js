@@ -8,8 +8,6 @@ const User = require("./models/user.model");
 const Note = require("./note.model");
 const { authenticateToken } = require("./utilities");
 
-
-
 // ✅ Use environment variable for MongoDB (Render will provide MONGO_URI)
 const mongoUri = process.env.MONGO_URI;
 
@@ -26,9 +24,6 @@ app.use(
     origin: "*",
   })
 );
-
-
-
 
 // ✅ Root route
 app.get("/", (req, res) => {
