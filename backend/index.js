@@ -25,6 +25,10 @@ app.use(
   })
 );
 
+import cors from "cors";
+app.use(cors({ origin: "*" }));
+
+
 // ✅ Root route
 app.get("/", (req, res) => {
   res.send({ data: "hello from Render backend 🚀" });
