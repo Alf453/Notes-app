@@ -55,7 +55,7 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <div className="flex items-center justify-center mt-28 min-h-[70vh] bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 p-4">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 p-4">
         <div className="w-96 border rounded-xl bg-white shadow-lg px-7 py-10 hover:shadow-2xl transition-shadow duration-300">
           <form onSubmit={handleLogin}>
             <h4 className="text-2xl mb-7 font-bold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
