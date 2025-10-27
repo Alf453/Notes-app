@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import TagInput from "../../components/Input/TagInput";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdMic, MdStop } from "react-icons/md";
 import axiosInstance from "../../utils/axiosInstance";
 
 const AddEditNotes = ({
@@ -13,8 +13,46 @@ const AddEditNotes = ({
   const [title, setTitle] = useState(noteData?.title || "");
   const [content, setContent] = useState(noteData?.content || "");
   const [tags, setTags] = useState(noteData?.tags || "");
-
   const [error, setError] = useState(null);
+
+  // 🎙️ Voice Recognition States
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
+
+  // ✅ Start Speech Recognition
+  const startListening = () => {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      alert("Speech Recognition not supported in this browser 😞");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onstart = () => setIsListening(true);
+    recognition.onend = () => setIsListening(false);
+    recognition.onerror = () => setIsListening(false);
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      // Append the spoken text to existing content
+      setContent((prev) => (prev ? prev + " " + transcript : transcript));
+    };
+
+    recognitionRef.current = recognition;
+    recognition.start();
+  };
+
+  // ✅ Stop Listening
+  const stopListening = () => {
+    recognitionRef.current?.stop();
+    setIsListening(false);
+  };
 
   // Add note
   const addNewNote = async () => {
@@ -112,13 +150,24 @@ const AddEditNotes = ({
 
       {/* Content area */}
       <div className="flex flex-col gap-2 mt-5">
-        <label className="text-sm font-semibold text-slate-700 tracking-wide">
-          CONTENT
+        <label className="text-sm font-semibold text-slate-700 tracking-wide flex items-center justify-between">
+          <span>CONTENT</span>
+          {/* 🎤 Voice Button */}
+          <button
+            onClick={isListening ? stopListening : startListening}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-white text-xs font-medium ${
+              isListening ? "bg-red-500" : "bg-green-500"
+            } transition-all`}
+          >
+            {isListening ? <MdStop /> : <MdMic />}
+            {isListening ? "Stop" : "Voice Note"}
+          </button>
         </label>
+
         <textarea
           type="text"
           className="text-sm text-slate-800 outline-none bg-white/70 border border-slate-200 rounded-lg p-3 focus:ring-2 focus:ring-blue-200"
-          placeholder="Write your note here..."
+          placeholder="Write your note here or use voice input..."
           rows={10}
           value={content}
           onChange={({ target }) => setContent(target.value)}
