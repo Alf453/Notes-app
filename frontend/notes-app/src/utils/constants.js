@@ -1,1 +1,1 @@
-export const BASE_URL = "http://notes-app-qyxw.onrender.com";
+export const BASE_URL = "https://notes-app-qyxw.onrender.com";
