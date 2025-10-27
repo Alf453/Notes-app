@@ -7,6 +7,7 @@ import SignUp from "./pages/SignUp/SignUp";
 const routes = (
   <Router>
     <Routes>
+      <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/dashboard" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
