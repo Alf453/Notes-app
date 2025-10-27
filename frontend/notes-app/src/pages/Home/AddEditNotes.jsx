@@ -125,7 +125,11 @@ const AddEditNotes = ({
   };
 
   return (
-    <div className="relative bg-gradient-to-br from-[#fff7e6] via-[#fefaf3] to-[#fffefc] p-6 rounded-xl shadow-lg transition-all duration-300">
+    <div
+      className="relative bg-gradient-to-br from-[#fff7e6] via-[#fefaf3] to-[#fffefc] p-6 rounded-xl shadow-lg transition-all duration-300
+                  max-w-3xl w-full mx-auto my-4
+                  max-h-[90vh] overflow-y-auto"
+    >
       {/* Close button */}
       <button
         className="w-10 h-10 rounded-full flex items-center justify-center absolute top-3 right-3 hover:bg-[#fef3c7] transition-colors"
