@@ -2,7 +2,7 @@ import axios from "axios";
 import { BASE_URL } from "./constants";
 
 const axiosInstance = axios.create({
-  baseURL: "https://notes-app-beige-tau.vercel.app",
+  baseURL: "https://notes-app-qyxw.onrender.com",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
